@@ -1,16 +1,32 @@
-import React, {useState} from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Button  } from 'react-native';
-
+import React, {useState, useContext} from 'react';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Button, FlatList  } from 'react-native';
+import BlogContext from '../context/BlogContext';
 const HomeScreen = ({navigation}) =>
 {
 
+    const {data, addBlogPosts} = useContext(BlogContext);
 
     return (
         <View style={styles.containerView}>
             <Text style={styles.text}>HomeScreen</Text>
+            <Button
+                title='addBlog'
+                onPress={addBlogPosts}
+            />
+            <FlatList
+                data={data}
+                keyExtractor={key => key.title}
+                renderItem={({item}) => 
+                {
+                    return (
+                        <Text>{item.title}</Text>
+                    )
+                }}
+            />
         </View>
         );
 };
+
 
 const styles = StyleSheet.create({
     containerView:
