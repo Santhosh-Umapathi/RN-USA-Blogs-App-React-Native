@@ -6,11 +6,13 @@ import {Provider as BlogProvider} from './src/context/BlogContext'
 //Screens
 import HomeScreen from './src/screens/HomeScreen';
 import ShowScreen from "./src/screens/ShowScreen";
+import CreateScreen from "./src/screens/CreateScreen";
 
 const MainNavigator = createStackNavigator(
   {
     Home: HomeScreen,
     Show: ShowScreen,
+    Create: CreateScreen,
   },
   {
     initialRouteName: "Home",

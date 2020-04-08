@@ -44,6 +44,23 @@ const HomeScreen = ({navigation}) =>
 };
 
 
+HomeScreen.navigationOptions = ({navigation}) => {
+    return {
+        headerRight: () => 
+        (
+            <TouchableOpacity onPress={() => { navigation.navigate('Create') }}>
+                <Ionicons
+                    name="ios-add-circle-outline"
+                    size={35}
+                    color="white"
+                    style={{ marginRight: 20 }}
+                />
+            </TouchableOpacity>
+        ),
+    };
+}
+
+
 const styles = StyleSheet.create({
     containerView:
     {
