@@ -30,7 +30,8 @@ const CreateScreen = ({navigation}) =>
             
         <Button
                 title='Save'
-                onPress={() => { addBlogPosts(title, content) }} 
+                onPress={() => {addBlogPosts(title, content, () => {navigation.navigate('Home')}
+                )}} 
         />
       </View>
     );
