@@ -13,12 +13,13 @@ const CreateScreen = ({navigation}) =>
 
   return (
     <BlogForm
-      onSubmit={(title, content) =>
-      {
-        addBlogPosts(title, content, ()=>navigation.navigate('Home'))
+      headerLabel = "Enter"
+      buttonTitle="Save"
+      onSubmit={(title, content) => {
+        addBlogPosts(title, content, () => navigation.navigate("Home"));
       }}
-      />
-    );
+    />
+  );
 };
 
 CreateScreen.navigationOptions = ({navigation}) =>

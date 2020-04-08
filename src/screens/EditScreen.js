@@ -8,6 +8,7 @@ import {
 } from "react-native";
 //Context
 import { Context as BlogContext } from "../context/BlogContext";
+import BlogForm from "../components/BlogForm";
 
 const EditScreen = ({ navigation }) =>
 {
@@ -18,39 +19,16 @@ const EditScreen = ({ navigation }) =>
     //Filtering all blogpost with id passed from home
     const blogPosts = state.find((blogpost) => blogpost.id === item.id);
     
-    //State management
-    const [title, setTitle] = useState(blogPosts.title);
-    const [content, setContent] = useState(blogPosts.content);
-
+  
   return (
-    <View style={styles.containerView}>
-      <Text style={styles.text}>Edit Title</Text>
-      <TextInput
-        style={styles.titleText}
-        value={title}
-        onChangeText={(text) => {
-          setTitle(text);
-        }}
-      />
-
-      <Text style={styles.text}>Edit Content</Text>
-      <TextInput
-        style={styles.titleContent}
-        value={content}
-        onChangeText={(text) => {
-          setContent(text);
-        }}
-      />
-
-      <Button
-        title="Update"
-        onPress={() => {
-          editBlogPosts(item.id, item.title, item.content, () =>
-            navigation.popToTop()
-          );
-        }}
-      />
-    </View>
+    <BlogForm
+      headerLabel = "Edit"
+      buttonTitle="Update"
+      initialValues={{ title: blogPosts.title, content: blogPosts.content }}
+      onSubmit={(title, content) => {
+        editBlogPosts(item.id, title, content, () => navigation.popToTop());
+      }}
+    />
   );
 };
 

@@ -15,14 +15,14 @@ const reducer = (state, action) =>
         ];
 
       case 'edit_blog':
-        return state.find(blogPost => {
-          blogPost.id === action.payload.id;
-          return {
-            id: action.payload.id,
-            title: action.payload.title,
-            content: action.payload.content,
-          };
-        });
+        return state.map(
+          blogPost =>
+          {
+            return blogPost.id === action.payload.id
+              ? action.payload
+              : blogPost;
+          }
+        );
       
       case "delete_blog":
         return state.filter((blogPost) => blogPost.id !== action.payload);
@@ -38,7 +38,7 @@ const addBlogPosts = (dispatch) =>
     return (title, content, callback) =>
     {
       dispatch({ type: "add_blog", payload: { title, content } });
-      callback(); //Call the callback once dispatch completed
+      if(callback) { callback();} //Call the callback once dispatch completed
     }
 };
 
@@ -47,7 +47,7 @@ const editBlogPosts = (dispatch) =>
   return (id, title, content, callback) =>
   {
     dispatch({ type: "edit_blog", payload: { id, title, content } });
-    callback(); //Call the callback once dispatch completed
+    if (callback) { callback(); } //Call the callback once dispatch completed
   };
 };
 

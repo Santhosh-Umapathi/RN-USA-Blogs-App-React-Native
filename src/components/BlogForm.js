@@ -7,34 +7,49 @@ import {
   Button,
 } from "react-native";
 
-const BlogForm = ({ navigation, onSubmit }) => {
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
+const BlogForm = ({ navigation, onSubmit, initialValues, buttonTitle, headerLabel }) => {
+  const [title, setTitle] = useState(initialValues.title);
+  const [content, setContent] = useState(initialValues.content);
 
 
   return (
     <View style={styles.containerView}>
-      <Text style={styles.text}>Enter Title</Text>
+      <Text style={styles.text}>{headerLabel} Title</Text>
       <TextInput
         style={styles.titleText}
         value={title}
-        onChangeText={(text) => {setTitle(text)}}
+        onChangeText={(text) => {
+          setTitle(text);
+        }}
       />
 
-      <Text style={styles.text}>Enter Content</Text>
+      <Text style={styles.text}>{headerLabel} Content</Text>
       <TextInput
         style={styles.titleContent}
         value={content}
-        onChangeText={(text) => {setContent(text)}}
+        onChangeText={(text) => {
+          setContent(text);
+        }}
       />
 
       <Button
-        title="Save"
-        onPress={() => {onSubmit(title, content);}}
+        title={buttonTitle}
+        onPress={() => {
+          onSubmit(title, content);
+        }}
       />
     </View>
   );
 };
+
+//Setting default initial values for state
+BlogForm.defaultProps = {
+    initialValues:
+    {
+        title: '',
+        content: ''
+    }
+}
 
 
 const styles = StyleSheet.create({
