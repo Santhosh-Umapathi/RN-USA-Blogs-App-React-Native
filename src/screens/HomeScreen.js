@@ -1,10 +1,11 @@
 import React, {useState, useContext} from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Button, FlatList  } from 'react-native';
-import BlogContext from '../context/BlogContext';
+import {Context as BlogContext} from '../context/BlogContext';
+
 const HomeScreen = ({navigation}) =>
 {
 
-    const {data, addBlogPosts} = useContext(BlogContext);
+    const {state, addBlogPosts} = useContext(BlogContext);
 
     return (
         <View style={styles.containerView}>
@@ -14,7 +15,7 @@ const HomeScreen = ({navigation}) =>
                 onPress={addBlogPosts}
             />
             <FlatList
-                data={data}
+                data={state}
                 keyExtractor={key => key.title}
                 renderItem={({item}) => 
                 {
