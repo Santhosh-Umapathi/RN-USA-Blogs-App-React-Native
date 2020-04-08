@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Button, FlatList  } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 //Context
 import { Context as BlogContext } from '../context/BlogContext';
 //Icons
@@ -8,7 +8,7 @@ import { Feather, Ionicons } from "@expo/vector-icons";
 const HomeScreen = ({navigation}) =>
 {
 
-    const {state, addBlogPosts, deleteBlogPosts} = useContext(BlogContext);
+    const {state, deleteBlogPosts} = useContext(BlogContext);
 
     return (
         <View style={styles.containerView}>
@@ -18,7 +18,7 @@ const HomeScreen = ({navigation}) =>
                 renderItem={({item}) => 
                 {
                     return (
-                        <TouchableOpacity onPress={() => { navigation.navigate('Show', {item: item.id})}}>
+                        <TouchableOpacity onPress={() => { navigation.navigate('Show', {itemID: item.id,item: item })}}>
                         <View style={styles.rowStyle}>
                           <Text style={styles.text}>{item.title}</Text>
                           <TouchableOpacity
@@ -58,33 +58,29 @@ HomeScreen.navigationOptions = ({navigation}) => {
 
 
 const styles = StyleSheet.create({
-    containerView:
-    {
-        flex: 1,
-        backgroundColor: '#fff',
-    },
-    text: 
-    {
-        fontSize: 30,
-        marginLeft: 10
-    },
-    iconStyle:
-    {
-        marginRight: 5     
-    },   
-    rowStyle:
-    {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        borderBottomColor: 'lightgray',
-        borderTopColor: 'white',
-        borderLeftColor: 'white',
-        borderRightColor:'white',
-        borderWidth: 0.5,
-        marginBottom: 5,
-        padding: 10
-    }
+  containerView: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
+  text: {
+    fontSize: 30,
+    //marginLeft: 10
+  },
+  iconStyle: {
+    //marginRight: 5
+  },
+  rowStyle: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderBottomColor: "#F4C724",
+    borderTopColor: "white",
+    borderLeftColor: "white",
+    borderRightColor: "white",
+    borderWidth: 1,
+    marginBottom: 5,
+    padding: 10,
+  },
 });
 
 export default HomeScreen;

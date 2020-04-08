@@ -16,14 +16,14 @@ const CreateScreen = ({navigation}) =>
       <View style={styles.containerView}>
         <Text style={styles.text}>Enter Title</Text>
         <TextInput
-          style={styles.titleInputStyle}
+          style={styles.titleText}
           value={title}
           onChangeText={(text) => {setTitle(text);}}
         />
 
         <Text style={styles.text}>Enter Content</Text>
         <TextInput
-          style={styles.contentInputStyle}
+          style={styles.titleContent}
           value={content}
           onChangeText={(text) => {setContent(text);}}
         />
@@ -51,27 +51,25 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 30,
-    margin: 5,
+    margin: 10,
   },
-  titleInputStyle: {
-    borderWidth: 0.5,
-    borderColor: "#F4C724",
-    marginHorizontal: 5,
-    marginBottom: 10,
-    paddingLeft: 5,
-    paddingBottom: 10,
+  titleText: {
     fontSize: 20,
-    paddingTop: 5,
-  },
-  contentInputStyle: {
-    borderWidth: 0.5,
+    borderWidth: 1,
     borderColor: "#F4C724",
-    marginHorizontal: 5,
-    marginBottom: 10,
-    paddingTop: 5,
-    paddingLeft: 5,
+    borderRadius: 10,
+    padding: 10,
+    marginHorizontal: 10,
+  },
+  titleContent: {
+    fontSize: 20,
+    borderWidth: 1,
+    borderColor: "#F4C724",
+    borderRadius: 10,
+    paddingLeft: 10,
+    paddingTop: 10,
     paddingBottom: 80,
-    fontSize: 20,
+    marginHorizontal: 10,
   },
 });
 
