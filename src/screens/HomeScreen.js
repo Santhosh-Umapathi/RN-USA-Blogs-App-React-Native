@@ -12,10 +12,6 @@ const HomeScreen = ({navigation}) =>
 
     return (
         <View style={styles.containerView}>
-            <Button
-                title='addBlog'
-                onPress={addBlogPosts}
-            />
             <FlatList
                 data={state}
                 keyExtractor={key => key.id}
