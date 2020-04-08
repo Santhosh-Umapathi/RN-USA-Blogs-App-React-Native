@@ -4,10 +4,20 @@ import createDataContext from "./createDataContext";
 const reducer = (state, action) =>
 {
     switch (action.type) {
-        case 'add_blog':
-            return [...state, { title: `Blog Post #${state.length + 1}` }];
-        default:
-            return state;
+      case "add_blog":
+        return [
+          ...state,
+          {
+            id: `${Math.floor(Math.random() * 9999)}`,
+            title: `Blog Post #${state.length + 1}`,
+          },
+        ];
+
+      case "delete_blog":
+        return state.filter((blogPost) => blogPost.id !== action.payload);
+
+      default:
+        return state;
     }
 };
 
@@ -20,50 +30,19 @@ const addBlogPosts = (dispatch) =>
     }
 };
 
+const deleteBlogPosts = (dispatch) =>
+{
+    return (id) =>
+    {
+        dispatch({ type: 'delete_blog', payload: id });
+    }
+}
+
+
 
 //Exporting Context and Provider to Children
 export const { Context, Provider } = createDataContext(
          reducer, //Passing Reducer
-         { addBlogPosts }, //Passing Actions
+         { addBlogPosts, deleteBlogPosts }, //Passing Actions
          [] //Passing Initial State
-);
-       
-
-
-
-
-import createDataContext from './createDataContext';
-
-//Reducer
-const reducer = (state, action) =>
-{
-    switch (action.type)
-    {
-        case 'add_blog':
-            return [...state, { title: `Blog Post #${state.length + 1}` }];
-        default:
-            return state;
-    }
-};
-
-//Actions
-const addBlogPosts = (dispatch) =>
-{
-    return () =>
-    {
-        dispatch({ type: });
-    }
-};
-
-
-//Exporting Context and Provider to Children
-export const { Context, Provider } = createDataContext(
-    reducer, //Passing Reducer
-    { addBlogPosts }, //Passing Actions
-    [] //Passing Initial State
-);
-
-//write in home screen to use context
-//import React, {useState, useContext} from 'react';
-//import {Context as BlogContext} from '../context/BlogContext';
-//const {state, addBlogPosts} = useContext(BlogContext);
+       );
