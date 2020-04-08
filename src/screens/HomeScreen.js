@@ -1,9 +1,9 @@
-import React, {useState, useContext} from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Button, FlatList  } from 'react-native';
+import React, {useContext} from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Button, FlatList  } from 'react-native';
+//Context
 import { Context as BlogContext } from '../context/BlogContext';
-
 //Icons
-import { Feather } from "@expo/vector-icons";
+import { Feather, Ionicons } from "@expo/vector-icons";
 
 const HomeScreen = ({navigation}) =>
 {
@@ -22,16 +22,20 @@ const HomeScreen = ({navigation}) =>
                 renderItem={({item}) => 
                 {
                     return (
-                      <View style={styles.rowStyle}>
-                        <Text style={styles.text}>{item.title}</Text>
-                        <TouchableOpacity onPress={()=>deleteBlogPosts(item.id)}>
-                          <Feather
-                            name="trash"
-                            size={30}
-                            style={styles.iconStyle}
-                          />
-                        </TouchableOpacity>
-                      </View>
+                        <TouchableOpacity onPress={() => { navigation.navigate('Show', {item: item.id})}}>
+                        <View style={styles.rowStyle}>
+                          <Text style={styles.text}>{item.title}</Text>
+                          <TouchableOpacity
+                            onPress={() => deleteBlogPosts(item.id)}
+                          >
+                            <Feather
+                              name="trash"
+                              size={30}
+                              style={styles.iconStyle}
+                            />
+                          </TouchableOpacity>
+                        </View>
+                      </TouchableOpacity>
                     );
                 }}
             />
@@ -45,8 +49,6 @@ const styles = StyleSheet.create({
     {
         flex: 1,
         backgroundColor: '#fff',
-        //alignItems: 'center',
-        //justifyContent: 'center',
     },
     text: 
     {
@@ -63,7 +65,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         borderBottomColor: 'lightgray',
-        borderTopColor:'white',
+        borderTopColor: 'white',
+        borderLeftColor: 'white',
+        borderRightColor:'white',
         borderWidth: 0.5,
         marginBottom: 5,
         padding: 10

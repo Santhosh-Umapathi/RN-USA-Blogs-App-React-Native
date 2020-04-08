@@ -5,10 +5,12 @@ import { createStackNavigator } from 'react-navigation-stack';
 import {Provider as BlogProvider} from './src/context/BlogContext'
 //Screens
 import HomeScreen from './src/screens/HomeScreen';
+import ShowScreen from "./src/screens/ShowScreen";
 
 const MainNavigator = createStackNavigator(
   {
     Home: HomeScreen,
+    Show: ShowScreen,
   },
   {
     initialRouteName: "Home",
