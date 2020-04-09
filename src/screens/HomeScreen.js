@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 //Context
 import { Context as BlogContext } from '../context/BlogContext';
@@ -8,7 +8,22 @@ import { Feather, Ionicons } from "@expo/vector-icons";
 const HomeScreen = ({navigation}) =>
 {
 
-    const {state, deleteBlogPosts} = useContext(BlogContext);
+  const { state, deleteBlogPosts, getBlogPosts} = useContext(BlogContext);
+  
+
+  useEffect(() =>
+  {
+    getBlogPosts();
+
+    //Second fetch when navigate back to home
+    const listener = navigation.addListener("didFocus", () => getBlogPosts());
+
+    //Removes listener when the screen is unmounted, avoids memory leak
+    return () => { listener.remove() };
+  }, [])
+
+
+
 
     return (
         <View style={styles.containerView}>

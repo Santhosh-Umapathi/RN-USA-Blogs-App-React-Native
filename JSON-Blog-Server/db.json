@@ -1,3 +1,9 @@
 {
-    "blogposts": []
+  "blogposts": [
+    {
+      "title": "Loooo",
+      "content": "Loooooo",
+      "id": "3"
+    }
+  ]
 }
