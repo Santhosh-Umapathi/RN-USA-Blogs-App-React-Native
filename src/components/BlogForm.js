@@ -7,7 +7,8 @@ import {
   Button,
 } from "react-native";
 
-const BlogForm = ({ navigation, onSubmit, initialValues, buttonTitle, headerLabel }) => {
+const BlogForm = ({ onSubmit, initialValues, buttonTitle, headerLabel }) =>
+{
   const [title, setTitle] = useState(initialValues.title);
   const [content, setContent] = useState(initialValues.content);
 
@@ -18,25 +19,20 @@ const BlogForm = ({ navigation, onSubmit, initialValues, buttonTitle, headerLabe
       <TextInput
         style={styles.titleText}
         value={title}
-        onChangeText={(text) => {
-          setTitle(text);
-        }}
+        onChangeText={text => setTitle(text)}
       />
 
       <Text style={styles.text}>{headerLabel} Content</Text>
       <TextInput
+        multiline
         style={styles.titleContent}
         value={content}
-        onChangeText={(text) => {
-          setContent(text);
-        }}
+        onChangeText={text => setContent(text)}
       />
 
       <Button
         title={buttonTitle}
-        onPress={() => {
-          onSubmit(title, content);
-        }}
+        onPress={() => onSubmit(title, content)}
       />
     </View>
   );

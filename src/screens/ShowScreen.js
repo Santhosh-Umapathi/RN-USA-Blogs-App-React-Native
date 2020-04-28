@@ -56,9 +56,7 @@ ShowScreen.navigationOptions = ({navigation}) =>
     headerRight: () =>
     (
       <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('Edit', {item: item})
-          }}
+          onPress={() => navigation.navigate('Edit', {item: item})}
       >
         <AntDesign
           name="edit"

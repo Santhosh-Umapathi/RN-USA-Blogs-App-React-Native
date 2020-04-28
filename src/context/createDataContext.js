@@ -1,3 +1,5 @@
+//MARK: Custom Resuable Hook
+
 import React, { useReducer } from "react";
 
 //Reusable Context/Provider
@@ -29,5 +31,5 @@ export default (reducer, actions, initialState) =>
     };
 
 
-    return { Context, Provider };
+    return { Context, Provider }; //Returns Object
 };

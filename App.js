@@ -1,7 +1,7 @@
 import React from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-//Context
+//Provider
 import {Provider as BlogProvider} from './src/context/BlogContext'
 //Screens
 import HomeScreen from './src/screens/HomeScreen';

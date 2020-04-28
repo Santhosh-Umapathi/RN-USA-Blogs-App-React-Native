@@ -8,7 +8,6 @@ const reducer = (state, action) =>
 
     case "get_blog":
       return action.payload;
-
     // case "add_blog":
     //   return [
     //     ...state,
@@ -20,12 +19,12 @@ const reducer = (state, action) =>
     //   ];
 
     case "edit_blog":
-      return state.map((blogPost) => {
+      return state.map(blogPost => {
         return blogPost.id === action.payload.id ? action.payload : blogPost;
       });
 
     case "delete_blog":
-      return state.filter((blogPost) => blogPost.id !== action.payload);
+      return state.filter(blogPost => blogPost.id !== action.payload);
 
     default:
       return state;
@@ -39,7 +38,7 @@ const addBlogPosts = (dispatch) =>
     {
       const response = await jsonAPI.post('/blogposts', {title, content})
       //dispatch({ type: "add_blog", payload: { title, content } });
-      if(callback) { callback();} //Call the callback once dispatch completed
+      if(callback) { callback()} //Call the callback once dispatch completed
     }
 };
 
@@ -48,8 +47,8 @@ const editBlogPosts = (dispatch) =>
   return async(id, title, content, callback) =>
   {
     await jsonAPI.put(`/blogposts/${id}`, {title, content})
-    dispatch({ type: "edit_blog", payload: { id, title, content } });
-    if (callback) { callback(); } //Call the callback once dispatch completed
+    //dispatch({ type: "edit_blog", payload: { id, title, content } });
+    if (callback) { callback() } //Call the callback once dispatch completed
   };
 };
 
@@ -58,14 +57,14 @@ const deleteBlogPosts = (dispatch) =>
     return async(id) =>
     {
         await jsonAPI.delete(`/blogposts/${id}`)
-        dispatch({ type: 'delete_blog', payload: id });
+        //dispatch({ type: 'delete_blog', payload: id });
     }
 }
 
 const getBlogPosts = (dispatch) => {
   return async () => {
-    const response = await jsonAPI.get("/blogposts");
-    dispatch({ type: "get_blog", payload: response.data });
+    const response = await jsonAPI.get("/blogposts"); //Fetching data from API
+    dispatch({ type: "get_blog", payload: response.data }); //Response.data is the actual data required
   };
 };
 
@@ -73,7 +72,7 @@ const getBlogPosts = (dispatch) => {
 
 //Exporting Context and Provider to Children
 export const { Context, Provider } = createDataContext(
-         reducer, //Passing Reducer
-         { addBlogPosts, editBlogPosts, deleteBlogPosts, getBlogPosts }, //Passing Actions
-         [] //Passing Initial State
-       );
+  reducer, //Passing Reducer
+  { addBlogPosts, editBlogPosts, deleteBlogPosts, getBlogPosts }, //Passing Actions
+  [] //Passing Initial State
+);

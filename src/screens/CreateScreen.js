@@ -5,7 +5,6 @@ import { Context as BlogContext } from '../context/BlogContext';
 //Component
 import BlogForm from '../components/BlogForm';
 
-
 const CreateScreen = ({navigation}) =>
 {
     //Context

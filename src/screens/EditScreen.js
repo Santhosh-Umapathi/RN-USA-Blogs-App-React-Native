@@ -1,11 +1,5 @@
-import React, { useState, useContext } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  Button,
-} from "react-native";
+import React, { useContext } from "react";
+import { StyleSheet } from "react-native";
 //Context
 import { Context as BlogContext } from "../context/BlogContext";
 import BlogForm from "../components/BlogForm";
@@ -17,7 +11,7 @@ const EditScreen = ({ navigation }) =>
     //Context
     const { state, editBlogPosts } = useContext(BlogContext);
     //Filtering all blogpost with id passed from home
-    const blogPosts = state.find((blogpost) => blogpost.id === item.id);
+    const blogPosts = state.find(blogpost => blogpost.id === item.id);
     
   
   return (
